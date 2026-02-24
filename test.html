@@ -5,13 +5,16 @@
         <p class="station-question">quel est le nom de ce camp?</p>
 
         <div class="input-row">
-            <input type="text" id="userAnswer" class="answer-input" placeholder="Enter your answer...">
-            <button class="submit-btn" onclick="checkAnswer()">Submit</button>
+            <input type="text" id="userAnswer" class="answer-input" placeholder="Enter your answer..."><button class="submit-btn" onclick="checkAnswer()">Submit</button>
         </div>
 
         <div id="result" class="result-box hidden">
             <h3 class="correct-text">Correct! Your secret letter is: <span id="letter"></span></h3>
             <p class="next-step">Proceed to the next station.</p>
+        </div>
+
+        <div id="incorrect-result" class="result-box incorrect-box hidden">
+            <h3 class="incorrect-text">Incorrect! Work as a team and try again.</h3>
         </div>
     </div>
 </div>
@@ -93,6 +96,11 @@
         animation: slideDown 0.4s ease-out;
     }
 
+    .incorrect-box {
+        background: rgba(255, 100, 100, 0.15);
+        border-left: 4px solid #ff6464;
+    }
+
     .hidden {
         display: none;
     }
@@ -102,6 +110,13 @@
         font-size: 20px;
         font-weight: 600;
         color: #00ffcc;
+    }
+
+    .incorrect-text {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        color: #ff6464;
     }
 
     .next-step {
@@ -126,11 +141,15 @@
         var correctAnswer = "ozanam";
         var secretLetter = "U";
 
+        // Hide both messages first
+        document.getElementById("result").classList.add("hidden");
+        document.getElementById("incorrect-result").classList.add("hidden");
+
         if (answer === correctAnswer) {
             document.getElementById("result").classList.remove("hidden");
             document.getElementById("letter").innerText = secretLetter;
         } else {
-            alert("Incorrect! Work as a team and try again.");
+            document.getElementById("incorrect-result").classList.remove("hidden");
         }
     }
 </script>
