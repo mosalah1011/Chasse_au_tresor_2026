@@ -1,156 +1,60 @@
-<!-- Container -->
-<div class="station-container">
-    <div class="station-card">
-        <h2 class="station-title">Station 1: The Challenge</h2>
-        <p class="station-question">quel est le nom de ce camp?</p>
-
-        <div class="input-row">
-            <input type="text" id="userAnswer" class="answer-input" placeholder="Enter your answer..."><button class="submit-btn" onclick="checkAnswer()">Submit</button>
-        </div>
-
-        <div id="result" class="result-box hidden">
-            <h3 class="correct-text">Correct! Your secret letter is: <span id="letter"></span></h3>
-            <p class="next-step">Proceed to the next station.</p>
-        </div>
-
-        <div id="incorrect-result" class="result-box incorrect-box hidden">
-            <h3 class="incorrect-text">Incorrect! Work as a team and try again.</h3>
-        </div>
-    </div>
-</div>
-
-<style>
-    body {
-        font-family: "Segoe UI", sans-serif;
-        background: linear-gradient(135deg, #4b79a1, #283e51);
-        margin: 0;
-        padding: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-    }
-
-    .station-container {
-        width: 100%;
-        max-width: 750px;
-    }
-
-    .station-card {
-        background: rgba(255, 255, 255, 0.12);
-        padding: 45px;
-        border-radius: 16px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-        animation: fadeIn 0.6s ease-out;
-    }
-
-    .station-title {
-        margin-top: 0;
-        text-align: center;
-        font-size: 39px;
-        font-weight: 700;
-    }
-
-    .station-question {
-        text-align: center;
-        font-size: 27px;
-        margin-bottom: 38px;
-    }
-
-    .input-row {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-    }
-
-    .answer-input {
-        flex: 1;
-        padding: 18px;
-        border-radius: 8px;
-        border: none;
-        font-size: 24px;
-    }
-
-    .submit-btn {
-        padding: 18px 27px;
-        background: #00c6ff;
-        border: none;
-        border-radius: 8px;
-        color: #000;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.2s;
-        font-size: 18px;
-    }
-
-    .submit-btn:hover {
-        background: #00a4d4;
-    }
-
-    .result-box {
-        margin-top: 38px;
-        padding: 30px;
-        background: rgba(0, 255, 150, 0.15);
-        border-left: 4px solid #00ff9d;
-        border-radius: 8px;
-        animation: slideDown 0.4s ease-out;
-    }
-
-    .incorrect-box {
-        background: rgba(255, 100, 100, 0.15);
-        border-left: 4px solid #ff6464;
-    }
-
-    .hidden {
-        display: none;
-    }
-
-    .correct-text {
-        margin: 0 0 10px 0;
-        font-size: 30px;
-        font-weight: 600;
-        color: #00ffcc;
-    }
-
-    .incorrect-text {
-        margin: 0;
-        font-size: 27px;
-        font-weight: 600;
-        color: #ff6464;
-    }
-
-    .next-step {
-        margin: 0;
-        font-size: 24px;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes slideDown {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
-
-<script>
-    function checkAnswer() {
-        var answer = document.getElementById("userAnswer").value.toLowerCase();
-        var correctAnswer = "ozanam";
-        var secretLetter = "U";
-
-        // Hide both messages first
-        document.getElementById("result").classList.add("hidden");
-        document.getElementById("incorrect-result").classList.add("hidden");
-
-        if (answer === correctAnswer) {
-            document.getElementById("result").classList.remove("hidden");
-            document.getElementById("letter").innerText = secretLetter;
-        } else {
-            document.getElementById("incorrect-result").classList.remove("hidden");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Hunt Theme</title>
+    <style>
+        body {
+            background-image: url('path_to_parchment_background.jpg'); /* Use an appropriate image URL */
+            background-size: cover;
+            font-family: 'Pirata One', cursive; /* Use a pirate-themed font */
+            color: #704c32;
+            animation: float 2s infinite;
         }
-    }
-</script>
+
+        @keyframes float {
+            0%, 100% { transform: translatey(0); }
+            50% { transform: translatey(-10px); }
+        }
+
+        .coin {
+            width: 30px;
+            height: 30px;
+            background: url('path_to_coin_image.png') no-repeat;
+            position: absolute;
+            animation: drop 5s infinite;
+        }
+
+        @keyframes drop {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .treasure-chest {
+            width: 100px;
+            height: 100px;
+            background: url('path_to_treasure_chest_image.png') no-repeat;
+            position: fixed;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Treasure Hunt!</h1>
+    <div class="treasure-chest"></div>
+    <script>
+        function createCoin() {
+            const coin = document.createElement('div');
+            coin.className = 'coin';
+            coin.style.left = Math.random() * window.innerWidth + 'px';
+            document.body.appendChild(coin);
+            setTimeout(() => coin.remove(), 5000);
+        }
+
+        setInterval(createCoin, 1000);
+    </script>
+</body>
+</html>
