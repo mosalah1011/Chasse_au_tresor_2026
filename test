@@ -1,0 +1,136 @@
+<!-- Container -->
+<div class="station-container">
+    <div class="station-card">
+        <h2 class="station-title">Station 1: The Challenge</h2>
+        <p class="station-question">What is the name of the nearest planet to the sun?</p>
+
+        <div class="input-row">
+            <input type="text" id="userAnswer" class="answer-input" placeholder="Enter your answer...">
+            <button class="submit-btn" onclick="checkAnswer()">Submit</button>
+        </div>
+
+        <div id="result" class="result-box hidden">
+            <h3 class="correct-text">Correct! Your secret letter is: <span id="letter"></span></h3>
+            <p class="next-step">Proceed to the next station.</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: "Segoe UI", sans-serif;
+        background: linear-gradient(135deg, #4b79a1, #283e51);
+        margin: 0;
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+    }
+
+    .station-container {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .station-card {
+        background: rgba(255, 255, 255, 0.12);
+        padding: 30px;
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        animation: fadeIn 0.6s ease-out;
+    }
+
+    .station-title {
+        margin-top: 0;
+        text-align: center;
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+    .station-question {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+
+    .input-row {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .answer-input {
+        flex: 1;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        font-size: 16px;
+    }
+
+    .submit-btn {
+        padding: 12px 18px;
+        background: #00c6ff;
+        border: none;
+        border-radius: 8px;
+        color: #000;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .submit-btn:hover {
+        background: #00a4d4;
+    }
+
+    .result-box {
+        margin-top: 25px;
+        padding: 20px;
+        background: rgba(0, 255, 150, 0.15);
+        border-left: 4px solid #00ff9d;
+        border-radius: 8px;
+        animation: slideDown 0.4s ease-out;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .correct-text {
+        margin: 0 0 10px 0;
+        font-size: 20px;
+        font-weight: 600;
+        color: #00ffcc;
+    }
+
+    .next-step {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<script>
+    function checkAnswer() {
+        var answer = document.getElementById("userAnswer").value.toLowerCase();
+        var correctAnswer = "mercury";
+        var secretLetter = "U";
+
+        if (answer === correctAnswer) {
+            document.getElementById("result").classList.remove("hidden");
+            document.getElementById("letter").innerText = secretLetter;
+        } else {
+            alert("Incorrect! Work as a team and try again.");
+        }
+    }
+</script>
