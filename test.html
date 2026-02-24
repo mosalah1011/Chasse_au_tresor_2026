@@ -3,58 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treasure Hunt Theme</title>
+    <title>Treasure Hunt Quiz</title>
     <style>
         body {
-            background-image: url('path_to_parchment_background.jpg'); /* Use an appropriate image URL */
+            background-image: url('path_to_parchment_background.jpg');
             background-size: cover;
-            font-family: 'Pirata One', cursive; /* Use a pirate-themed font */
-            color: #704c32;
-            animation: float 2s infinite;
+            font-family: 'Pirata One', cursive;
+            color: #8B4513;
+            text-align: center;
         }
-
-        @keyframes float {
-            0%, 100% { transform: translatey(0); }
-            50% { transform: translatey(-10px); }
+        .falling-coins {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            animation: fall 5s infinite;
         }
-
-        .coin {
-            width: 30px;
-            height: 30px;
-            background: url('path_to_coin_image.png') no-repeat;
-            position: absolute;
-            animation: drop 5s infinite;
-        }
-
-        @keyframes drop {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100vh); }
+        @keyframes fall {
+            from {transform: translateY(-100%);}
+            to {transform: translateY(100vh);}
         }
 
         .treasure-chest {
             width: 100px;
             height: 100px;
-            background: url('path_to_treasure_chest_image.png') no-repeat;
-            position: fixed;
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
+            background-image: url('path_to_treasure_chest.png');
+            background-size: cover;
+            margin: auto;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to the Treasure Hunt!</h1>
+    <h1>Welcome to the Treasure Hunt Quiz!</h1>
+    <p>Answer the questions to reveal the treasure!</p>
     <div class="treasure-chest"></div>
+    <img src="path_to_falling_coin.png" class="falling-coins" style="left: 10%;" />
+    <img src="path_to_falling_coin.png" class="falling-coins" style="left: 50%;" />
+    <img src="path_to_falling_coin.png" class="falling-coins" style="left: 80%;" />
     <script>
-        function createCoin() {
-            const coin = document.createElement('div');
-            coin.className = 'coin';
-            coin.style.left = Math.random() * window.innerWidth + 'px';
-            document.body.appendChild(coin);
-            setTimeout(() => coin.remove(), 5000);
-        }
-
-        setInterval(createCoin, 1000);
+        // Quiz logic goes here
     </script>
 </body>
 </html>
