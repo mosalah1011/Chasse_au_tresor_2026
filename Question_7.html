@@ -220,18 +220,26 @@
 
     <script>
     function checkAnswer() {
-        var answer = document.getElementById("userAnswer").value.toLowerCase().trim();
-        var correctAnswer = ["bénévoles", "bénévole", "benevoles", "benevole"];
-        var secretLetter = "O";
+        // Récupération, minuscules, retrait des espaces et suppression complète des accents
+        var answer = document.getElementById("userAnswer").value
+            .toLowerCase()
+            .trim()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
 
-        document.getElementById("result").classList.add("hidden");
-        document.getElementById("incorrect-result").classList.add("hidden");
+        // Tableau des réponses attendues, réécrites SANS ACCENT
+        var correctAnswer = ["benevole", "benevoles"];
+        var secretLetter = "O";[cite: 2]
 
-        if (correctAnswer.includes(answer)) {
-            document.getElementById("result").classList.remove("hidden");
-            document.getElementById("letter").innerText = secretLetter;
+        document.getElementById("result").classList.add("hidden");[cite: 2]
+        document.getElementById("incorrect-result").classList.add("hidden");[cite: 2]
+
+        // Validation par correspondance dans la table
+        if (correctAnswer.includes(answer)) {[cite: 2]
+            document.getElementById("result").classList.remove("hidden");[cite: 2]
+            document.getElementById("letter").innerText = secretLetter;[cite: 2]
         } else {
-            document.getElementById("incorrect-result").classList.remove("hidden");
+            document.getElementById("incorrect-result").classList.remove("hidden");[cite: 2]
         }
     }
     </script>
@@ -240,10 +248,10 @@
 
     <div class="station-container">
         <div class="station-card">
-            <h2 class="station-title">Épreuve de question #7</h2>
-            <p class="station-subtitle">répondez correctement et obtenez la lettre secrète.</p>
+            <h2 class="station-title">Épreuve de question #7</h2>[cite: 2]
+            <p class="station-subtitle">répondez correctement et obtenez la lettre secrète.</p>[cite: 2]
 
-            <p class="station-question">Dans son message gravé au camp Ozanam, qui est remercié par le fondateur du camp&nbsp;?</p>
+            <p class="station-question">Dans son message gravé au camp Ozanam, qui est remercié par le fondateur du camp&nbsp;?</p>[cite: 2]
 
             <div class="input-row">
                 <input
@@ -251,22 +259,22 @@
                     id="userAnswer"
                     class="answer-input"
                     placeholder="Écrivez votre réponse ici..."
-                >
-                <button class="submit-btn" onclick="checkAnswer()">Valider</button>
+                >[cite: 2]
+                <button class="submit-btn" onclick="checkAnswer()">Valider</button>[cite: 2]
             </div>
 
-            <p class="hint-text">&nbsp; </p>
+            <p class="hint-text">&nbsp; </p>[cite: 2]
 
-            <div id="result" class="result-box hidden">
+            <div id="result" class="result-box hidden">[cite: 2]
                 <h3 class="correct-text">
-                    <span>Correct! Coordonnées: A-3. Lettre :</span>
-                    <span id="letter" class="secret-letter"></span>
+                    <span>Correct! Coordonnées: A-3. Lettre :</span>[cite: 2]
+                    <span id="letter" class="secret-letter"></span>[cite: 2]
                 </h3>
-                <p class="next-step">Notez-la bien et passez à la prochaine épreuve de la chasse au trésor.</p>
+                <p class="next-step">Notez-la bien et passez à la prochaine épreuve de la chasse au trésor.</p>[cite: 2]
             </div>
 
-            <div id="incorrect-result" class="result-box incorrect-box hidden">
-                <h3 class="incorrect-text">Mauvaise réponse… essayez encore!</h3>
+            <div id="incorrect-result" class="result-box incorrect-box hidden">[cite: 2]
+                <h3 class="incorrect-text">Mauvaise réponse… essayez encore!</h3>[cite: 2]
             </div>
         </div>
     </div>
